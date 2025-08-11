@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import Hero from './_components/hero-section';
 import Products from './_components/products';
 import HealthBenefits from './_components/health-benefits';
+import PeanutButterFeatures from './_components/peanut-butter-features';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Hero />
       <Products />
       <HealthBenefits />
+      <PeanutButterFeatures />
     </>
   );
 };

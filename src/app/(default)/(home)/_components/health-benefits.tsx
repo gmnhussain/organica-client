@@ -5,7 +5,7 @@ import data from './health-benefits-data.json';
 const HealthBenefits = () => {
   return (
     <>
-      <section className="px-4 py-10 bg-[#f9f9f9]">
+      <section className="px-4 py-10">
         {/* Health Benefits */}
         <div className="max-w-6xl mx-auto mt-16">
           <h2 className="text-2xl font-bold text-center mb-10">
@@ -34,10 +34,13 @@ const HealthBenefits = () => {
               />
             </div>
 
-            {/* Right */}
+            {/* Right (Reversed only on desktop) */}
             <div className="space-y-6">
               {data.healthBenefits.right.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
+                <div
+                  key={i}
+                  className="flex items-start gap-3 md:flex-row-reverse md:text-right"
+                >
                   <span className="text-3xl">{item.icon}</span>
                   <div>
                     <h4 className="font-bold">{item.title}</h4>
