@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Natural Wild Honeycomb-1100gm",
+      "price": 150,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Sundarban Honey 500g",
+      "price": 400,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Organic Honey 500g",
+      "price": 200,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Organic Honey 1kg",
+      "price": 1500,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Organic Honey 250g",
+      "price": 700,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Organic Honey 500g",
+      "price": 300,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Organic Honey 1kg",
+      "price": 1200,
+      "image": "/products/p1.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Organic Honey 250g",
+      "price": 600,
+      "image": "/products/p1.jpg"
+    }
+  ]
+}

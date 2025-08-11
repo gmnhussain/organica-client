@@ -10,10 +10,8 @@ export default async function DashboardLayout({
   return (
     <>
       <Header />
-      <div className="flex min-h-screen bg-background">
-        <div className="flex-1 flex flex-col">
-          <main className="flex-1 bg-muted">{children}</main>
-        </div>
+      <div className="bg-white">
+        <main className="min-h-screen">{children}</main>
       </div>
       <Footer />
     </>

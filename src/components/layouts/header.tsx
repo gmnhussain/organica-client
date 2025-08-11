@@ -1,43 +1,73 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
-export function Header() {
+export function Header({ onOpenDrawer }: { onOpenDrawer: () => void }) {
+  const [cart, setCart] = useState<any[]>([]);
+
+  // Load cart from localStorage and keep it in sync
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+    }
+
+    const handleStorageChange = () => {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      } else {
+        setCart([]);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  // Count total quantity
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+
   return (
     <>
       <header className="bg-white shadow-sm">
-        <p className="text-center p-3 border-gray-200 border-b-1 font-medium text-sm text-gray-600">
+        <p className="text-center p-1 font-medium text-sm text-white bg-[#191d22]">
           ৳১০০০ বা তার বেশি অর্ডারে ফ্রি শিপিং
         </p>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
           <div className="flex items-center justify-between h-16">
             {/* Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <a
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-green-600 font-medium"
               >
                 HOME
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-green-600 font-medium"
               >
                 SHOP
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-green-600 font-medium"
               >
                 PRODUCTS
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-green-600 font-medium"
               >
                 BLOGS
-              </a>
+              </Link>
             </nav>
 
             {/* Logo */}
@@ -55,9 +85,20 @@ export function Header() {
                   className="pl-10 w-48"
                 />
               </div>
-              <Button variant="ghost" size="icon">
-                <ShoppingCart className="w-5 h-5" />
-                <span className="sr-only">Cart</span>
+
+              {/* Cart Icon with Badge */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onOpenDrawer}
+                className="relative"
+              >
+                <ShoppingCart className="w-8 h-8 text-orange-500" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                    {totalItems}
+                  </span>
+                )}
               </Button>
             </div>
           </div>
