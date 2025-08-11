@@ -46,7 +46,6 @@
 }
 
 @import './colors/base.css';
-/* @import './colors/violet.css'; */
 
 @layer base {
   * {
