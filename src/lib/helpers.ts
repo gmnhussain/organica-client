@@ -31,3 +31,7 @@ export const getStorageUrl = (
   // return `${SERVER}/${type}s/${sanitizedPath}`;
   return `${SERVER}/${sanitizedPath}`;
 };
+
+export const getStoragePath = (path: string) => {
+  return path ? SERVER + path : '';
+};

@@ -17,3 +17,19 @@
 //   status: 'active' | 'inactive';
 //   description?: string;
 // }
+
+export interface Product {
+  id: number;
+  name: string;
+  type: string;
+  capacity: number;
+  photo: string;
+  // gallery: null,
+  weight: string;
+  // price: number;
+  costprice: number;
+  mrpprice: number;
+  quantity: number;
+  // stock: number;
+  // category: string;
+}
