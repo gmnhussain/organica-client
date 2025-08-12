@@ -3,6 +3,8 @@
 import { useCartStore, useCartSubtotal } from '@/stores/useCartStore';
 import { useBodyOverflow } from '@/hooks/useBodyOverflow';
 import { cn } from '@/lib/utils';
+import SafeImage from './image';
+import { getStoragePath } from '@/lib/helpers';
 
 const CartDrawer = () => {
   const { cart, updateQty, isDrawerOpen, toggleDrawer } = useCartStore();
@@ -45,17 +47,27 @@ const CartDrawer = () => {
               key={item.id}
               className="flex gap-4 mb-6 border-b pb-4 items-center"
             >
-              <img
-                src={item.image}
-                alt={item.title}
+              {/* <img
+                src={item.photo}
+                alt={item.name}
                 className="w-20 h-20 object-cover rounded"
+              /> */}
+
+              <SafeImage
+                src={getStoragePath(item?.photo)}
+                alt={item?.name || ''}
+                width={100}
+                height={100}
+                className="w-20 h-20 object-cover rounded"
+                // placeholder={'/placeholder.png'}
               />
+
               <div className="flex-1">
                 <h4 className="font-semibold text-base mb-1 leading-tight">
-                  {item.title}
+                  {item.name}
                 </h4>
                 <p className="text-sm font-normal mb-2">
-                  TK {item.price.toFixed(2)}
+                  TK {item.mrpprice.toFixed(2)}
                 </p>
                 <div className="flex items-center gap-3">
                   <button

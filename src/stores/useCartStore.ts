@@ -1,15 +1,10 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-}
+import { Product } from '@/types/product';
 
 interface CartItem extends Product {
   qty: number;
+  // price: number;
 }
 
 interface CartStore {
@@ -93,5 +88,5 @@ export const useCartItems = () => useCartStore((state) => state.cart);
 
 export const useCartSubtotal = () =>
   useCartStore((state) =>
-    state.cart.reduce((sum, item) => sum + item.price * item.qty, 0)
+    state.cart.reduce((sum, item) => sum + item.mrpprice * item.qty, 0)
   );
