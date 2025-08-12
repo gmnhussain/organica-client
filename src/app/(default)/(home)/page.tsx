@@ -5,6 +5,8 @@ import Hero from './_components/hero-section';
 import Products from './_components/products';
 import HealthBenefits from './_components/health-benefits';
 import PeanutButterFeatures from './_components/peanut-butter-features';
+import PeanutButterComparison from './_components/peanut-butter-comparison';
+import Testimonials from './_components/testimonials';
 
 const HomePage = () => {
   return (
@@ -13,6 +15,8 @@ const HomePage = () => {
       <Products />
       <HealthBenefits />
       <PeanutButterFeatures />
+      <PeanutButterComparison />
+      <Testimonials />
     </>
   );
 };
