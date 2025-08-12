@@ -24,7 +24,7 @@ const SafeImage = ({
   priority = false,
   placeholder = placeholderImage,
 }: SafeImageProps) => {
-  const [imageSrc, setImageSrc] = useState(src);
+  const [imageSrc, setImageSrc] = useState(src || placeholder);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +36,9 @@ const SafeImage = ({
 
   return (
     <div className={`relative w-full h-full flex items-center justify-center`}>
-      {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
+      {isLoading && (
+        <Skeleton className="animate-pulse absolute inset-0 w-full h-full" />
+      )}
 
       <Image
         src={imageSrc || placeholder}
