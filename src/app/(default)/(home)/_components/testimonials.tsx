@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import { useRef } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { useRef } from 'react';
 
 const testimonials = [
   {
-    img: "/jiaur.jpg",
-    text: "আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।",
-    name: "জিয়াউর রহমান",
-    role: "ইঞ্জিনিয়ার",
+    img: '/jiaur.jpg',
+    text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
+    name: 'জিয়াউর রহমান',
+    role: 'ইঞ্জিনিয়ার',
   },
   {
-    img: "/nazmul.jpg",
-    text: "আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।",
-    name: "নাজমুল হোসাইন",
-    role: "ঢাকা",
+    img: '/nazmul.jpg',
+    text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
+    name: 'নাজমুল হোসাইন',
+    role: 'ঢাকা',
   },
   {
-    img: "/jiaur.jpg",
-    text: "আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।",
-    name: "জিয়াউর রহমান",
-    role: "ইঞ্জিনিয়ার",
+    img: '/jiaur.jpg',
+    text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
+    name: 'জিয়াউর রহমান',
+    role: 'ইঞ্জিনিয়ার',
   },
   {
-    img: "/nazmul.jpg",
-    text: "আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।",
-    name: "নাজমুল হোসাইন",
-    role: "ঢাকা",
+    img: '/nazmul.jpg',
+    text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
+    name: 'নাজমুল হোসাইন',
+    role: 'ঢাকা',
   },
 ];
 
@@ -57,7 +57,11 @@ export default function Testimonials() {
             stroke="currentColor"
             className="w-5 h-5"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -73,15 +77,20 @@ export default function Testimonials() {
             stroke="currentColor"
             className="w-5 h-5"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
 
         {/* Swiper Carousel */}
         <Swiper
           modules={[Navigation, Autoplay]}
+          loop={true}
           onInit={(swiper) => {
-            if (typeof swiper.params.navigation !== "boolean") {
+            if (typeof swiper.params.navigation !== 'boolean') {
               const navigation = swiper.params.navigation as any;
               navigation.prevEl = prevRef.current;
               navigation.nextEl = nextRef.current;
@@ -108,7 +117,9 @@ export default function Testimonials() {
                   alt={item.name}
                   className="w-16 h-16 rounded-full object-cover"
                 />
-                <p className="text-[#555] text-sm leading-relaxed">{item.text}</p>
+                <p className="text-[#555] text-sm leading-relaxed">
+                  {item.text}
+                </p>
                 <div>
                   <p className="font-bold text-sm">{item.name}</p>
                   <p className="text-xs text-gray-500">{item.role}</p>
