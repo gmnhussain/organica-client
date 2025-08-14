@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useCartStore } from '@/stores/useCartStore';
 import { getStoragePath } from '@/lib/helpers';
 import { Product } from '@/types/product';
@@ -13,21 +14,30 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="bg-white text-center p-4">
       <div className="w-full h-48 mb-3 flex items-center justify-center">
-        {product?.photo ? (
-          <SafeImage
-            src={getStoragePath(product?.photo)}
-            alt={product?.name || ''}
-            width={100}
-            height={100}
-            className="!w-full !h-full object-contain"
-            // placeholder={'/placeholder.png'}
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-200"></div>
-        )}
+        <Link href={`/products/${product?.id}`}>
+          {product?.photo ? (
+            <SafeImage
+              src={getStoragePath(product?.photo)}
+              alt={product?.name || ''}
+              width={100}
+              height={100}
+              className="!w-full !h-full object-contain"
+              // placeholder={'/placeholder.png'}
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200"></div>
+          )}
+        </Link>
       </div>
 
-      <h3 className="text-sm font-semibold">{product?.name || ''}</h3>
+      <h3>
+        <Link
+          className="text-sm font-semibold"
+          href={`/products/${product?.id}`}
+        >
+          {product?.name || ''}
+        </Link>
+      </h3>
       <p className="text-lg font-bold text-green-800 mb-2">
         TK {product?.mrpprice ? product.mrpprice.toFixed(2) : '0.00'}
       </p>
