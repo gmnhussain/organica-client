@@ -1,6 +1,6 @@
 import React from 'react';
 import { getProducts } from '@/services/products';
-import ProductCard from './product-card';
+import ProductCard from '@/components/shared/product-card';
 import { Product } from '@/types/product';
 
 export default async function Products() {

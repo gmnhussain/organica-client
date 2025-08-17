@@ -39,6 +39,7 @@ import { checkoutSchema } from '@/validations/checkout';
 import { createCheckout, confirmOrder } from '@/services/checkout';
 
 import OTPPanel from './otp-panel';
+import OrderConfirmed from './order-confirmed';
 
 // Constants
 const DELIVERY_ZONES: DeliveryZone[] = [
@@ -90,26 +91,30 @@ export default function CheckoutPage() {
   );
 
   const [isMounted, setIsMounted] = useState(false);
-  const [step, setStep] = useState<'form' | 'otp'>('form');
+  const [step, setStep] = useState<'form' | 'otp' | 'confirmed'>('form');
+
+  const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
+  const [orderSummary, setOrderSummary] = useState(null);
 
   const [otpRequestState, otpRequestAction, isOtpPending] = useActionState<
     CheckoutFormState,
     FormData
-  >(createCheckout, { success: false });
+  >(createCheckout, { success: null });
 
   const [otpVerifyState, otpVerifyAction, isVerifyPending] = useActionState<
     CheckoutFormState,
     FormData
-  >(confirmOrder, { success: false });
+  >(confirmOrder, { success: null });
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     setValue,
     watch,
     getValues,
+    setError,
   } = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
@@ -185,7 +190,7 @@ export default function CheckoutPage() {
   };
 
   useEffect(() => {
-    if (!otpRequestState) return;
+    if (!otpRequestState || otpRequestState.success === null) return;
 
     if (otpRequestState.success) {
       setStep('otp');
@@ -234,6 +239,8 @@ export default function CheckoutPage() {
         is_combo: false,
       };
 
+      // console.log('Paylaod', orderPayload);
+
       startTransition(() => {
         otpVerifyAction(orderPayload);
       });
@@ -247,18 +254,38 @@ export default function CheckoutPage() {
   };
 
   useEffect(() => {
-    if (!otpVerifyState) return;
+    if (!otpVerifyState || otpVerifyState.success === null) return;
 
     if (otpVerifyState.success) {
+      const data = getValues();
+
+      // console.log('OtpVerifyState', otpVerifyState);
+
+      setOrderSummary({
+        // response: result,
+        invoiceNo: otpVerifyState?.data?.invoice_no,
+        id: otpVerifyState?.data?.id,
+        products: otpVerifyState?.data?.order_items || [],
+        deliveryCharge: otpVerifyState?.data?.delivery_cost || 0,
+        totalCost: otpVerifyState?.data?.grand_total || 0,
+        deliveryInfo: {
+          name: data?.fullName,
+          contact_no: data?.mobile,
+          address: data?.address,
+        },
+      });
       reset();
       clearCart();
       toast.success('Success', {
         description: 'Purchase placed successfully.',
       });
+      setIsOrderConfirmed(true);
+      setStep('confirmed');
+
       // router.refresh();
-    } else if (otpVerifyState.error) {
+    } else {
       toast.error('Failed', {
-        description: 'Failed to place order.',
+        description: otpVerifyState?.error || 'Failed to place order.',
       });
     }
     // }, [formState, reset, router]);
@@ -273,7 +300,7 @@ export default function CheckoutPage() {
     return null;
   }
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !isOrderConfirmed) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center p-8 bg-white rounded-lg shadow-sm max-w-md">
@@ -309,7 +336,7 @@ export default function CheckoutPage() {
             onResend={handleSubmit(requestOtp)}
             // resendCooldown={() => {}}
           />
-        ) : (
+        ) : step === 'form' ? (
           <form onSubmit={handleSubmit(requestOtp)}>
             <div className="grid lg:grid-cols-5">
               {/* Customer Information Section */}
@@ -482,10 +509,12 @@ export default function CheckoutPage() {
                     <div className="flex items-start space-x-2 mt-1">
                       <Checkbox
                         id="terms"
-                        checked={watch('terms')}
-                        onCheckedChange={(checked) =>
-                          setValue('terms', Boolean(checked))
-                        }
+                        // checked={watch('terms')}
+                        // {...register('terms')}
+                        onCheckedChange={(checked) => {
+                          setValue('terms', Boolean(checked));
+                          setError('terms', { message: '' });
+                        }}
                       />
                       <div>
                         <Label
@@ -645,6 +674,10 @@ export default function CheckoutPage() {
               </div>
             </div>
           </form>
+        ) : step === 'confirmed' ? (
+          <OrderConfirmed orderSummary={orderSummary} />
+        ) : (
+          <></>
         )}
       </div>
     </div>

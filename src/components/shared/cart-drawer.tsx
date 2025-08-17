@@ -107,6 +107,7 @@ const CartDrawer = () => {
               <Link
                 href="/cart"
                 className="mt-6 block w-full bg-green-800 text-white py-3 rounded text-lg text-center"
+                onClick={() => toggleDrawer(false)}
               >
                 View Cart
               </Link>

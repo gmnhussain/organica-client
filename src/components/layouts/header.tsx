@@ -55,7 +55,11 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <div className="relative hidden sm:block">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input type="text" placeholder="Search" className="pl-10 w-48" />
+              <Input
+                type="text"
+                placeholder="Search"
+                className="pl-10 w-48 shadow-none"
+              />
             </div>
 
             {/* Cart Icon with Badge */}

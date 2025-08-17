@@ -1,5 +1,5 @@
 import { getProducts } from '@/services/products';
-import ProductCard from '@/app/(default)/(home)/_components/product-card';
+import ProductCard from '@/components/shared/product-card';
 
 export default async function RelatedProducts({ slug }: { slug: number }) {
   const data = await getProducts({
