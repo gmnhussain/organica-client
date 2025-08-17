@@ -33,9 +33,9 @@ import {
   DeliveryZone,
   PaymentMethod,
   CheckoutFormState,
-  CheckoutFormValues,
+  // CheckoutFormValues,
 } from '@/types/checkout';
-import { checkoutSchema } from '@/validations/checkout';
+import { checkoutSchema, CheckoutFormValues } from '@/validations/checkout';
 import { createCheckout, confirmOrder } from '@/services/checkout';
 
 import OTPPanel from './otp-panel';
