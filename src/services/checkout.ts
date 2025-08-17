@@ -84,9 +84,12 @@ export async function confirmOrder(
     console.log('Response:', data);
 
     if (!response.ok) {
+      const errorMessage =
+        data?.otp?.flag === false ? data?.otp?.message[0] : data?.message[0];
       return {
         success: false,
-        error: data.message || 'Failed to create brand',
+        message: errorMessage || 'Something went wrong',
+        error: errorMessage || 'Something went wrong',
         errors: data.errors || null,
         // fields: Object.fromEntries(formData) as Partial<CheckoutFormData>,
       };
@@ -99,11 +102,12 @@ export async function confirmOrder(
     return {
       success: true,
       message: 'Brand created successfully!',
-      data,
+      data: data?.data || {},
     };
   } catch (error) {
     return {
       success: false,
+      message: 'Something went wrong',
       error:
         error instanceof Error ? error.message : 'An unknown error occurred',
       //   fields: Object.fromEntries(formData) as Partial<CheckoutFormData>,

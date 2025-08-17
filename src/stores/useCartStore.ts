@@ -9,7 +9,7 @@ interface CartItem extends Product {
 
 interface CartStore {
   cart: CartItem[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, qty?: number) => void;
   updateQty: (id: number, qty: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
@@ -22,7 +22,7 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       cart: [],
       isDrawerOpen: false,
-      addToCart: (product) => {
+      addToCart: (product, qty = 1) => {
         set((state) => {
           const existingItem = state.cart.find(
             (item) => item.id === product.id
@@ -30,13 +30,13 @@ export const useCartStore = create<CartStore>()(
 
           if (existingItem) {
             const updatedCart = state.cart.map((item) =>
-              item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+              item.id === product.id ? { ...item, qty: item.qty + qty } : item
             );
             return { cart: updatedCart };
           }
 
           return {
-            cart: [...state.cart, { ...product, qty: 1 }],
+            cart: [...state.cart, { ...product, qty: qty }],
             isDrawerOpen: true,
           };
         });

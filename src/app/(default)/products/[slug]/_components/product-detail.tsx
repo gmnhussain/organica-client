@@ -19,8 +19,11 @@ import {
   ShoppingBag,
   PhoneCall,
 } from 'lucide-react';
+import { getStoragePath } from '@/lib/helpers';
+import { useCartStore } from '@/stores/useCartStore';
+import { useRouter } from 'next/navigation';
 
-const productImages = [
+const images = [
   '/products/img01.jpg',
   '/products/img02.jpg',
   '/products/img03.jpg',
@@ -29,6 +32,8 @@ const productImages = [
 ];
 
 export default function ProductDetailsPage({ product }: any) {
+  const router = useRouter();
+  const { addToCart, toggleDrawer } = useCartStore();
   console.log(product);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -36,6 +41,9 @@ export default function ProductDetailsPage({ product }: any) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+
+  const productImage = getStoragePath(product.photo);
+  const productImages = [productImage, ...images];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -235,6 +243,10 @@ export default function ProductDetailsPage({ product }: any) {
             <Button
               className="flex-1 w-full border border-[#171717] py-6 text-white text-md"
               size="lg"
+              onClick={() => {
+                addToCart(product, quantity);
+                toggleDrawer(true);
+              }}
             >
               <ShoppingBag className="!h-5 !w-5 mr-2" />
               Add to Cart
@@ -244,6 +256,10 @@ export default function ProductDetailsPage({ product }: any) {
               variant="outline"
               className="flex-1 border-gray-500 text-gray-800 py-6 w-full text-md"
               size="lg"
+              onClick={() => {
+                addToCart(product, quantity);
+                router.push('/cart');
+              }}
             >
               <ShoppingCart className="!h-5 !w-5 mr-2" />
               Buy Now
