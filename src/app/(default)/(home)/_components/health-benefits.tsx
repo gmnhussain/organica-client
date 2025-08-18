@@ -5,10 +5,10 @@ import data from './health-benefits-data.json';
 const HealthBenefits = () => {
   return (
     <>
-      <section className="px-4 py-10">
+      <section className="py-20 container mx-auto">
         {/* Health Benefits */}
-        <div className="max-w-6xl mx-auto mt-16">
-          <h2 className="text-2xl font-bold text-center mb-10">
+        <div className="">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-14">
             {data.healthBenefits.title}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-8">
