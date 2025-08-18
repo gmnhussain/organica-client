@@ -5,7 +5,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Custom colors start */
+  --color-primary: var(--primary);
+  --color-cream: var(--organica-cream);
+  --color-harvest: var(--organica-harvest);
+  --color-forest: var(--organica-forest);
+  --color-orange: var(--organica-orange);
   --color-background: var(--background);
+  /* Custom colors end */
+
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -34,7 +42,6 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -132,4 +139,15 @@ html body[data-scroll-locked] {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+/* Slider CSS */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff !important;
+  width: 100px !important;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 30px !important;
 }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,8 +13,8 @@ export function Header() {
   const { toggleDrawer } = useCartStore();
 
   return (
-    <header className="bg-white shadow-sm">
-      <p className="text-center p-1 font-medium text-sm text-white bg-[#191d22]">
+    <header className="bg-white">
+      <p className="text-center p-1 font-medium text-sm text-white bg-primary">
         ৳১০০০ বা তার বেশি অর্ডারে ফ্রি শিপিং
       </p>
       <div className="container mx-auto">
@@ -48,7 +49,15 @@ export function Header() {
 
           {/* Logo */}
           <div className="flex-1 flex justify-center md:justify-start md:flex-none">
-            <h1 className="text-2xl font-bold text-green-600">Organica</h1>
+            <Link href="/" className="flex items-center">
+              <Image
+                width={200}
+                height={200}
+                src="/logo.png"
+                alt="Logo"
+                className="h-10 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Search and Cart */}

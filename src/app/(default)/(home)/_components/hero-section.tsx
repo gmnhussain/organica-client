@@ -14,14 +14,16 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const HeroSection = () => {
   return (
-    <div className="heroSec bg-gray-300 container mx-auto">
+    <div className="heroSec container mx-auto mt-6">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
+        spaceBetween={0}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 5000 }}
+        pagination={false}
+        navigation={false}
+        loop={true}
+        // pagination={{ clickable: true }}
+        autoplay={{ delay: 7000 }}
       >
         <SwiperSlide>
           <Image
@@ -34,7 +36,7 @@ const HeroSection = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/slider/slider1.jpg"
+            src="/slider/slider2.jpg"
             alt="Hero Image 2"
             width={800}
             height={300}
@@ -43,7 +45,7 @@ const HeroSection = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/slider/slider1.jpg"
+            src="/slider/slider3.jpg"
             alt="Hero Image 3"
             width={800}
             height={300}
