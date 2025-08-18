@@ -25,7 +25,7 @@ export default async function Products() {
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
       {productsData.map((product: Product) => (
         <div key={product.id}>
-          <ProductCard product={product} />
+          <ProductCard product={product} viewMode="grid" />
         </div>
       ))}
     </div>
