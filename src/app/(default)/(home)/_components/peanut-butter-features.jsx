@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ingredients = [
   { img: '/peanutButter/1.jpg', label: 'খাই চিনা বাদাম' },
@@ -14,29 +15,27 @@ const ingredients = [
 
 export default function PeanutButterBenefits() {
   return (
-    <section className="px-4 py-10">
-      <div className="max-w-6xl mx-auto text-center">
-        {/* Heading */}
-        <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-8">
-          পিনাট বাটারের স্বাস্থ্য উপকারিতা
-        </h2>
+    <section className="py-20 container mx-auto">
+      {/* Heading */}
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-8">
+        পিনাট বাটারের স্বাস্থ্য উপকারিতা
+      </h2>
 
-        {/* Items */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
-          {ingredients.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center text-center space-y-3"
-            >
-              <img
-                src={item.img}
-                alt={item.label}
-                className="w-20 h-20 object-contain"
-              />
-              <p className="text-sm font-medium">{item.label}</p>
-            </div>
-          ))}
-        </div>
+      {/* Items */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 max-w-5xl mx-auto">
+        {ingredients.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center text-center space-y-3"
+          >
+            <img
+              src={item.img}
+              alt={item.label}
+              className="w-20 h-20 object-contain rounded-md shadow-sm"
+            />
+            <p className="text-sm font-medium">{item.label}</p>
+          </div>
+        ))}
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-18 p-6 md:p-12">
@@ -75,10 +74,14 @@ export default function PeanutButterBenefits() {
               সুস্বাদু ও পুষ্টিকর!
             </li>
           </ul>
-
-          <button className="flex items-center gap-2 rounded bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-800 transition">
-            অর্ডার করুন
-          </button>
+          <div className="mt-10">
+            <Link
+              className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors duration-300"
+              href="/products"
+            >
+              অর্ডার করুন
+            </Link>
+          </div>
         </div>
       </div>
     </section>

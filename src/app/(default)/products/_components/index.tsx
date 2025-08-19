@@ -8,27 +8,29 @@ import RelatedProductsFallback from './related-products-fallback';
 
 export default function ProductListingPage() {
   return (
-    <div className="min-h-screen bg-gray-50 container mx-auto">
-      <div className="flex">
+    <div className="container mx-auto py-6">
+      <div className="flex gap-6">
         {/* Sidebar */}
-        <div className="w-80 bg-white p-6 shadow-sm">
-          <ProductsFilter />
+        <div className="w-80">
+          <div className="">
+            <ProductsFilter />
 
-          {/* Top Rated Products */}
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-4">
-              Top Rated Products
-            </h3>
-            <div className="space-y-3">
-              <Suspense fallback={<RelatedProductsFallback />}>
-                <RelatedProducts />
-              </Suspense>
+            {/* Top Rated Products */}
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">
+                Top Rated Products
+              </h3>
+              <div className="space-y-3">
+                <Suspense fallback={<RelatedProductsFallback />}>
+                  <RelatedProducts />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-6">
+        <div className="flex-1">
           {/* Top Controls */}
           <TopControls />
 

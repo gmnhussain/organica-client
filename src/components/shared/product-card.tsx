@@ -7,6 +7,7 @@ import { getStoragePath } from '@/lib/helpers';
 import { Product } from '@/types/product';
 import SafeImage from '@/components/shared/image';
 import { ViewMode } from '@/stores/useViewPreferencesStore';
+import { cn } from '@/lib/utils';
 // import placeholder from '@/data/placeholder';
 
 const ProductCard = ({
@@ -20,11 +21,10 @@ const ProductCard = ({
 
   return (
     <div
-      className={
-        viewMode === 'grid'
-          ? 'bg-white text-center p-4'
-          : 'bg-white flex gap-4 p-4 items-center'
-      }
+      className={cn(
+        'p-5 rounded-md hover:shadow-md transition-shadow duration-300 bg-white',
+        viewMode === 'grid' ? 'text-center' : 'flex gap-4 p-4 items-center'
+      )}
     >
       <div
         className={
@@ -33,7 +33,7 @@ const ProductCard = ({
             : 'w-32 h-32 flex-shrink-0'
         }
       >
-        <Link href={`/products/${product?.id}`}>
+        <Link href={`/products/${product?.id}`} className="h-full w-full">
           {product?.photo ? (
             <SafeImage
               src={getStoragePath(product?.photo)}
@@ -66,7 +66,7 @@ const ProductCard = ({
             addToCart(product);
             toggleDrawer(true);
           }}
-          className={`bg-green-800 text-white px-4 py-1 rounded text-sm`}
+          className={`bg-primary hover:bg-primary/90 transition duration-300 text-white px-5 py-2 rounded text-sm hover:cursor-pointer`}
         >
           অর্ডার করুন
         </button>
