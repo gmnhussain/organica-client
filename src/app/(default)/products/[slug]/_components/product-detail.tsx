@@ -1,12 +1,10 @@
 'use client';
 
 import type React from 'react';
-
+import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
-  Star,
-  Heart,
   ShoppingCart,
   ChevronLeft,
   ChevronRight,
@@ -22,6 +20,7 @@ import {
 import { getStoragePath } from '@/lib/helpers';
 import { useCartStore } from '@/stores/useCartStore';
 import { useRouter } from 'next/navigation';
+import { SocialShare } from '../../_components/social-share';
 
 const images = [
   '/products/img01.jpg',
@@ -90,12 +89,12 @@ export default function ProductDetailsPage({ product }: any) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="flex gap-4">
           {/* Vertical Thumbnail Gallery */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center justify-center space-y-2">
             {/* Previous thumbnails button */}
             <Button
               variant="outline"
               size="icon"
-              className="w-8 h-8 bg-transparent"
+              className="w-8 h-8 bg-transparent shadow-none border-0 bg-gray-200 hover:bg-gray-300 rounded-sm"
               onClick={previousThumbnails}
               disabled={thumbnailStartIndex === 0}
             >
@@ -103,7 +102,7 @@ export default function ProductDetailsPage({ product }: any) {
             </Button>
 
             {/* Thumbnails */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
               {productImages
                 .slice(thumbnailStartIndex, thumbnailStartIndex + 4)
                 .map((image, index) => {
@@ -112,10 +111,10 @@ export default function ProductDetailsPage({ product }: any) {
                     <button
                       key={actualIndex}
                       onClick={() => setCurrentImageIndex(actualIndex)}
-                      className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
+                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 shadow-none ${
                         actualIndex === currentImageIndex
                           ? 'border-primary'
-                          : 'border-border'
+                          : 'border-border border-transparent hover:cursor-pointer hover:opacity-70'
                       }`}
                     >
                       <img
@@ -132,7 +131,7 @@ export default function ProductDetailsPage({ product }: any) {
             <Button
               variant="outline"
               size="icon"
-              className="w-8 h-8 bg-transparent"
+              className="w-8 h-8 bg-transparent shadow-none border-0 bg-gray-200 hover:bg-gray-300 rounded-sm"
               onClick={nextThumbnails}
               disabled={thumbnailStartIndex + 4 >= productImages.length}
             >
@@ -151,7 +150,7 @@ export default function ProductDetailsPage({ product }: any) {
               />
 
               <div
-                className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center"
+                className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors cursor-pointer flex items-center justify-center"
                 onClick={openFullscreen}
               >
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm rounded-full p-3">
@@ -163,7 +162,7 @@ export default function ProductDetailsPage({ product }: any) {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/40 backdrop-blur-sm border-none"
                 onClick={previousImage}
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -172,14 +171,14 @@ export default function ProductDetailsPage({ product }: any) {
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/40 backdrop-blur-sm border-none"
                 onClick={nextImage}
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
 
               {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/50 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
                 {currentImageIndex + 1} / {productImages.length}
               </div>
             </div>
@@ -188,11 +187,11 @@ export default function ProductDetailsPage({ product }: any) {
 
         {/* Product Details */}
         <div className="space-y-6">
-          <div className="pt-2">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
               {product?.name || ''}
             </h1>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-4 mb-4">
               <span className="text-2xl font-bold text-green-600">
                 ৳{product?.mrpprice}
               </span>
@@ -239,9 +238,9 @@ export default function ProductDetailsPage({ product }: any) {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 mt-10">
+          <div className="flex gap-3 mt-6">
             <Button
-              className="flex-1 w-full border border-[#171717] py-6 text-white text-md"
+              className="flex-1 w-full border border-primary py-6 text-white text-md hover:bg-primary hover:opacity-90"
               size="lg"
               onClick={() => {
                 addToCart(product, quantity);
@@ -254,7 +253,7 @@ export default function ProductDetailsPage({ product }: any) {
 
             <Button
               variant="outline"
-              className="flex-1 border-gray-500 text-gray-800 py-6 w-full text-md"
+              className="flex-1 border-gray-500 text-gray-800 py-6 w-full text-md hover:opacity-70"
               size="lg"
               onClick={() => {
                 addToCart(product, quantity);
@@ -291,20 +290,23 @@ export default function ProductDetailsPage({ product }: any) {
             </a>
           </div>
 
-          <div className="text-md text-gray-600 mt-10">
-            <p>
-              <strong>Category:</strong> Honey
-            </p>
-            <p className="mt-2">
-              <strong>Tags:</strong> natural bee honey, natural honey
-            </p>
+          <div className="flex items-end space-x-12 mt-10">
+            <div className="text-sm text-gray-600">
+              <p>
+                <strong>Category:</strong> Honey
+              </p>
+              <p className="mt-1">
+                <strong>Tags:</strong> natural bee honey, natural honey
+              </p>
+            </div>
+            <SocialShare />
           </div>
         </div>
       </div>
 
       {isFullscreenOpen && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
@@ -312,7 +314,7 @@ export default function ProductDetailsPage({ product }: any) {
           <Button
             variant="outline"
             size="icon"
-            className="absolute top-4 right-4 bg-white/10 border-white/20 text-white hover:bg-white/20 z-10"
+            className="absolute top-4 right-4 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white z-10"
             onClick={closeFullscreen}
           >
             <X className="h-4 w-4" />
@@ -322,7 +324,7 @@ export default function ProductDetailsPage({ product }: any) {
           <Button
             variant="outline"
             size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white z-10"
             onClick={previousImage}
           >
             <ChevronLeft className="h-6 w-6" />
@@ -332,28 +334,30 @@ export default function ProductDetailsPage({ product }: any) {
           <Button
             variant="outline"
             size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white z-10"
             onClick={nextImage}
           >
             <ChevronRight className="h-6 w-6" />
           </Button>
 
           {/* Main Image */}
-          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
-            <img
+          <div className="relative flex items-center justify-center w-[100vw] h-[100vh]">
+            <Image
+              width={1200}
+              height={1200}
               src={productImages[currentImageIndex] || '/placeholder.svg'}
               alt={`Product image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
+              className="w-full h-full object-contain"
             />
           </div>
 
           {/* Image Counter */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white">
+          {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white">
             {currentImageIndex + 1} / {productImages.length}
-          </div>
+          </div> */}
 
           {/* Thumbnail Strip */}
-          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 max-w-[90vw] overflow-x-auto px-4">
+          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-3 max-w-[90vw] overflow-x-auto px-4">
             {productImages.map((image, index) => (
               <button
                 key={index}
@@ -367,7 +371,7 @@ export default function ProductDetailsPage({ product }: any) {
                 <img
                   src={image || '/placeholder.svg'}
                   alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:cursor-pointer"
                 />
               </button>
             ))}

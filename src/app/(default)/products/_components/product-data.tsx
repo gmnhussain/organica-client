@@ -8,7 +8,7 @@ const ProductData = ({ productsData }: any) => {
 
   return (
     <div
-      className={`grid gap-8 ${viewMode === 'list' ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'}`}
+      className={`grid gap-6 ${viewMode === 'list' ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'}`}
     >
       {productsData.map((product: any, index: number) => (
         <ProductCard key={index} product={product} viewMode={viewMode} />

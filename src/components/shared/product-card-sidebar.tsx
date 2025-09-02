@@ -10,7 +10,7 @@ import SafeImage from '@/components/shared/image';
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <>
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 border-b pb-4 last:border-0 last:pb-0">
         <div className="w-12 h-12">
           <Link href={`/products/${product?.id}`}>
             {product?.photo ? (

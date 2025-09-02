@@ -13,9 +13,9 @@ const HomePage = () => {
     <>
       <Hero />
       <Products />
-      <HealthBenefits />
+      {/* <HealthBenefits /> */}
       <PeanutButterFeatures />
-      <PeanutButterComparison />
+      {/* <PeanutButterComparison /> */}
       <Testimonials />
     </>
   );

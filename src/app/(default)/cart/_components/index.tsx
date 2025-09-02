@@ -16,7 +16,6 @@ export default function CartPage() {
   const { cart, updateQty } = useCartStore();
   const subtotal = useCartSubtotal();
   const [isMounted, setIsMounted] = useState(false);
-
   // Ensure component is mounted to avoid hydration issues
   useEffect(() => {
     setIsMounted(true);
@@ -49,8 +48,8 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center p-8 bg-white rounded-lg shadow-sm max-w-md">
+      <div className="min-h-screen bg-gray-50 flex justify-center">
+        <div className="text-center p-8 bg-white rounded-md border max-w-md h-80 mt-20">
           <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
             <ShoppingCart className="h-8 w-8 text-gray-400" />
           </div>
@@ -71,93 +70,121 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto py-8">
-        <div className="bg-white px-6 py-4 mb-6 rounded-lg shadow-sm">
+        <div className="mb-6 rounded-md">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900">Your Cart</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Your Cart</h1>
             <Button
               variant="ghost"
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:bg-transparent text-md hover:text-gray-900 !pr-0"
               asChild
             >
               <Link href="/products">
-                <ArrowLeft className="h-4 w-4 mr-2" />
+                <ArrowLeft className="h-4 w-4" />
                 Continue Shopping
               </Link>
             </Button>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid lg:grid-cols-10 gap-8 items-start">
           {/* Cart Items */}
-          <div className="lg:col-span-3 bg-white p-6 rounded-lg shadow-sm">
+          <div className="lg:col-span-7 bg-white rounded-md border overflow-hidden">
+            <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-4 bg-white border-b-3 font-medium text-gray-700 text-sm uppercase tracking-wide">
+              <div className="col-span-6 font-bold">Product</div>
+              <div className="col-span-2 text-center font-bold">Price</div>
+              <div className="col-span-2 text-center font-bold">Quantity</div>
+              <div className="col-span-2 text-center font-bold">Subtotal</div>
+            </div>
+
+            {/* Products List */}
             <div className="divide-y">
               {cart.map((item) => (
-                <div key={item.id} className="py-4 first:pt-0 last:pb-0">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    {/* Product Image */}
-                    <div className="w-full sm:w-32 h-32 border rounded-sm p-1 bg-white flex-shrink-0">
-                      <SafeImage
-                        src={getStoragePath(item?.photo)}
-                        alt={item?.name || ''}
-                        width={150}
-                        height={150}
-                        className="w-full h-full object-contain rounded"
-                      />
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="flex-1 flex flex-col">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h3 className="text-lg font-medium text-gray-900">
-                            {item?.name || ''}
-                          </h3>
-                          {/* <p className="text-gray-600 text-sm mt-1">
-                            {item?.description || ''}
-                          </p> */}
-                        </div>
-                        <p className="text-lg font-medium text-gray-900">
-                          TK {item.mrpprice ? item.mrpprice.toFixed(2) : '0.00'}
-                        </p>
+                <div key={item.id} className="px-6 py-3 h-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center h-auto">
+                    {/* Product Column */}
+                    <div className="col-span-1 sm:col-span-6 flex items-center gap-4 h-auto">
+                      <div className="w-16 h-16 border rounded-sm p-1 bg-white flex-shrink-0">
+                        <SafeImage
+                          src={getStoragePath(item?.photo)}
+                          alt={item?.name || ''}
+                          width={64}
+                          height={64}
+                          className="w-full h-full object-contain rounded"
+                        />
                       </div>
-
-                      <div className="mt-auto flex items-center justify-between">
-                        {/* Quantity Controls */}
-                        <div className="flex items-center space-x-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() =>
-                              handleUpdateQty(item.id, item.qty - 1)
-                            }
-                            className="h-8 w-8 p-0 bg-white shadow-none"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <span className="w-8 text-center">{item.qty}</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() =>
-                              handleUpdateQty(item.id, item.qty + 1)
-                            }
-                            className="h-8 w-8 p-0 bg-white shadow-none"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        {/* Remove Button */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base text-gray-900 truncate">
+                          {item?.name || ''}
+                        </h3>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => handleUpdateQty(item.id, 0)}
-                          className="text-red-500 hover:text-red-700 shadow-none"
+                          className="text-red-500 hover:text-red-700 shadow-none p-0 h-auto mt-1 sm:hidden"
                         >
-                          <Trash2 className="h-4 w-4 mr-2" />
+                          <Trash2 className="h-4 w-4 mr-1" />
                           Remove
                         </Button>
                       </div>
+                    </div>
+
+                    {/* Price Column */}
+                    <div className="col-span-1 sm:col-span-2 text-left sm:text-center h-auto">
+                      <span className="text-sm text-gray-500 sm:hidden">
+                        Price:{' '}
+                      </span>
+                      <span className="font-medium text-gray-900">
+                        {item.mrpprice ? item.mrpprice.toFixed(0) : '0'} ৳
+                      </span>
+                    </div>
+
+                    {/* Quantity Column */}
+                    <div className="col-span-1 sm:col-span-2 flex items-center justify-start sm:justify-center gap-2 h-auto">
+                      <span className="text-sm text-gray-500 sm:hidden">
+                        Qty:{' '}
+                      </span>
+                      <div className="flex items-center border rounded-sm">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleUpdateQty(item.id, item.qty - 1)}
+                          className="h-8 w-8 p-0 hover:bg-gray-100 rounded-none border-r"
+                        >
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        <span className="w-12 text-center text-sm font-medium py-1">
+                          {item.qty}
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleUpdateQty(item.id, item.qty + 1)}
+                          className="h-8 w-8 p-0 hover:bg-gray-100 rounded-none border-l"
+                        >
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleUpdateQty(item.id, 0)}
+                        className="text-red-500 hover:text-red-600 shadow-none p-1 hidden sm:block"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    {/* Subtotal Column */}
+                    <div className="col-span-1 sm:col-span-2 text-left sm:text-center h-auto">
+                      <span className="text-sm text-gray-500 sm:hidden">
+                        Subtotal:{' '}
+                      </span>
+                      <span className="font-medium text-gray-900">
+                        {item.mrpprice
+                          ? (item.mrpprice * item.qty).toFixed(0)
+                          : '0'}{' '}
+                        ৳
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -166,8 +193,8 @@ export default function CartPage() {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-100 p-6 rounded-lg sticky top-4">
+          <div className="lg:col-span-3">
+            <div className="bg-white border p-8 rounded-md sticky top-4 h-auto">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Order Summary
               </h2>
@@ -176,40 +203,20 @@ export default function CartPage() {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subtotal</span>
                   <span className="font-medium">
-                    TK {subtotal ? subtotal.toFixed(2) : '0.00'}
+                    {subtotal ? subtotal.toFixed(0) : '0'} ৳
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">TK 0.00</span>
+                  <span className="font-medium">0 ৳</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">TK 0.00</span>
+                  <span className="font-medium">0 ৳</span>
                 </div>
                 <div className="border-t pt-4 flex justify-between text-lg font-semibold">
                   <span>Total</span>
-                  <span>TK {subtotal ? subtotal.toFixed(2) : '0.00'}</span>
-                </div>
-              </div>
-
-              {/* Coupon Code */}
-              <div className="mb-6">
-                <label
-                  htmlFor="coupon"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Coupon Code
-                </label>
-                <div className="flex gap-2">
-                  <Input
-                    id="coupon"
-                    placeholder="Enter coupon code"
-                    className="flex-1 shadow-none bg-white"
-                  />
-                  <Button variant="outline" className="bg-white">
-                    Apply
-                  </Button>
+                  <span>{subtotal ? subtotal.toFixed(0) : '0'} ৳</span>
                 </div>
               </div>
 

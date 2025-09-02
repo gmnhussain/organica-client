@@ -14,7 +14,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const HeroSection = () => {
   return (
-    <div className="heroSec container mx-auto mt-6">
+    <div className="heroSec">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
@@ -27,29 +27,29 @@ const HeroSection = () => {
       >
         <SwiperSlide>
           <Image
-            src="/slider/slider1.jpg"
+            src="/slider/s1.webp"
             alt="Hero Image 1"
-            width={800}
-            height={300}
-            className="object-cover w-full h-full"
+            width={1400}
+            height={800}
+            className="object-cover w-full h-[650px]"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/slider/slider2.jpg"
+            src="/slider/s2.webp"
             alt="Hero Image 2"
-            width={800}
-            height={300}
-            className="object-cover w-full h-full"
+            width={1400}
+            height={800}
+            className="object-cover w-full h-[650px]"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/slider/slider3.jpg"
+            src="/slider/s3.webp"
             alt="Hero Image 3"
-            width={800}
-            height={300}
-            className="object-cover w-full h-full"
+            width={1400}
+            height={800}
+            className="object-cover w-full h-[650px]"
           />
         </SwiperSlide>
       </Swiper>

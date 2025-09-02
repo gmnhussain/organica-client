@@ -22,7 +22,7 @@ const CartDrawer = () => {
         onClick={() => toggleDrawer(false)}
         className={cn(
           'fixed w-full h-full top-0 left-0 inset-0 bg-black duration-300',
-          isDrawerOpen ? 'opacity-75 z-40' : 'opacity-0 z-[-1]'
+          isDrawerOpen ? 'opacity-66 z-40' : 'opacity-0 z-[-1]'
         )}
       ></div>
 
@@ -88,7 +88,7 @@ const CartDrawer = () => {
                     </button>
                     <button
                       onClick={() => updateQty(item.id, 0)}
-                      className="text-sm text-red-600 underline ml-6"
+                      className="text-sm text-red-600 underline ml-6 hover:cursor-pointer"
                     >
                       Remove
                     </button>
@@ -100,16 +100,23 @@ const CartDrawer = () => {
 
           {cart.length > 0 && (
             <>
-              <div className="font-bold text-lg mt-4 pt-4 pb-2">
+              <div className="font-bold text-lg mt-4 pb-2">
                 Subtotal: TK {subtotal.toFixed(2)}
               </div>
 
               <Link
                 href="/cart"
-                className="mt-6 block w-full bg-green-800 text-white py-3 rounded text-lg text-center"
+                className="mt-4 block w-full bg-gray-200 text-gray-900 py-2 rounded text-lg text-center hover:opacity-80"
                 onClick={() => toggleDrawer(false)}
               >
                 View Cart
+              </Link>
+              <Link
+                href="/cart"
+                className="mt-4 block w-full bg-primary text-white py-2 rounded text-lg text-center hover:opacity-90"
+                onClick={() => toggleDrawer(false)}
+              >
+                Checkout
               </Link>
             </>
           )}

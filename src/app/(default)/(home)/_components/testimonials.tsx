@@ -2,34 +2,29 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useRef } from 'react';
 
 const testimonials = [
   {
-    img: '/jiaur.jpg',
+    img: '/feedback/jiaur.jpg',
     text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
     name: 'জিয়াউর রহমান',
     role: 'ইঞ্জিনিয়ার',
   },
   {
-    img: '/nazmul.jpg',
+    img: '/feedback/nazmul.jpg',
     text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
     name: 'নাজমুল হোসাইন',
-    role: 'ঢাকা',
-  },
-  {
-    img: '/jiaur.jpg',
-    text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
-    name: 'জিয়াউর রহমান',
     role: 'ইঞ্জিনিয়ার',
   },
   {
-    img: '/nazmul.jpg',
+    img: '/feedback/ananta.jpg',
     text: 'আপনাদের থেকে আমি কফেকাবার টি নিয়েছি। আপনাদের টি টা খুব ভালো লেগেছে। দাম আর টেস্ট সব ঠিক আছে কিন্তু প্রাইস টা একটু বেশি।',
-    name: 'নাজমুল হোসাইন',
-    role: 'ঢাকা',
+    name: 'অনন্ত কুমার',
+    role: 'ভিজুয়ালাইজার',
   },
 ];
 
@@ -38,24 +33,24 @@ export default function Testimonials() {
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
   return (
-    <section className="bg-[#F8F7F5] py-12">
-      <div className="max-w-6xl mx-auto px-4 relative">
-        <h2 className="text-center text-xl md:text-2xl font-bold text-[#3F4920] mb-10">
-          সম্মানিত কাস্টমার রিভিউ
+    <section className="bg-[#F8F7F5] py-20">
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-14">
+          কাস্টমার রিভিউ
         </h2>
 
         {/* Navigation Buttons */}
         <button
           ref={prevRef}
-          className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition"
+          className="absolute left-[-20px] bottom-23 -translate-y-1/2 z-10 flex items-center justify-center cursor-pointer rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={2}
+            strokeWidth={1}
             stroke="currentColor"
-            className="w-5 h-5"
+            className="w-8 h-8 text-gray-400 hover:text-gray-700 transition"
           >
             <path
               strokeLinecap="round"
@@ -67,15 +62,15 @@ export default function Testimonials() {
 
         <button
           ref={nextRef}
-          className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition"
+          className="absolute right-[-20px] bottom-23 -translate-y-1/2 z-10 flex items-center justify-center cursor-pointer rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={2}
+            strokeWidth={1}
             stroke="currentColor"
-            className="w-5 h-5"
+            className="w-8 h-8 text-gray-400 hover:text-gray-700 transition"
           >
             <path
               strokeLinecap="round"
@@ -98,8 +93,8 @@ export default function Testimonials() {
               swiper.navigation.update();
             }
           }}
-          spaceBetween={24}
-          slidesPerView={1}
+          spaceBetween={10}
+          slidesPerView={2}
           breakpoints={{
             768: { slidesPerView: 2 },
           }}
@@ -107,22 +102,31 @@ export default function Testimonials() {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          className="pb-8"
+          className="p-0"
         >
           {testimonials.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col gap-4">
-                <img
+              <div className="bg-white rounded-2xl px-6 py-8 mx-3 my-6 flex items-center gap-5 h-full shadow-[0px_8px_15px_0px_rgba(0,0,0,0.07)]">
+                {/* Left Side - Image */}
+                <Image
+                  width={170}
+                  height={170}
                   src={item.img}
                   alt={item.name}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-34 h-34 rounded-full object-cover flex-shrink-0"
                 />
-                <p className="text-[#555] text-sm leading-relaxed">
-                  {item.text}
-                </p>
-                <div>
-                  <p className="font-bold text-sm">{item.name}</p>
-                  <p className="text-xs text-gray-500">{item.role}</p>
+
+                {/* Right Side - Content */}
+                <div className="flex flex-col gap-3">
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {item.text}
+                  </p>
+                  <div>
+                    <p className="font-bold text-gray-700 text-base mb-1">
+                      {item.name}
+                    </p>
+                    <p className="text-sm text-gray-500">{item.role}</p>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>

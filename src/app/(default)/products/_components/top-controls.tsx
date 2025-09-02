@@ -42,30 +42,49 @@ export const TopControls = () => {
         <div className="flex items-center space-x-2">
           <span className="text-sm text-gray-700">Show:</span>
           <Select value={showCount} onValueChange={setShowCount}>
-            <SelectTrigger className="w-16">
+            <SelectTrigger className="w-20 hover:cursor-pointer">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="20">20</SelectItem>
-              <SelectItem value="40">40</SelectItem>
-              <SelectItem value="60">60</SelectItem>
-              <SelectItem value="all">Show All</SelectItem>
+              <SelectItem value="20" className="hover:cursor-pointer">
+                20
+              </SelectItem>
+              <SelectItem value="40" className="hover:cursor-pointer">
+                40
+              </SelectItem>
+              <SelectItem value="60" className="hover:cursor-pointer">
+                60
+              </SelectItem>
+              <SelectItem value="all" className="hover:cursor-pointer">
+                Show All
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
-
-        <Select value={sortBy} onValueChange={setSortBy}>
-          <SelectTrigger className="w-32">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="latest">Sort by latest</SelectItem>
-            <SelectItem value="price-asc">Price: Low to High</SelectItem>
-            <SelectItem value="price-desc">Price: High to Low</SelectItem>
-            <SelectItem value="name-asc">Name: A-Z</SelectItem>
-            <SelectItem value="name-desc">Name: Z-A</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="">
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-40 hover:cursor-pointer">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="latest" className="hover:cursor-pointer">
+                Sort by latest
+              </SelectItem>
+              <SelectItem value="price-asc" className="hover:cursor-pointer">
+                Price: Low to High
+              </SelectItem>
+              <SelectItem value="price-desc" className="hover:cursor-pointer">
+                Price: High to Low
+              </SelectItem>
+              <SelectItem value="name-asc" className="hover:cursor-pointer">
+                Name: A-Z
+              </SelectItem>
+              <SelectItem value="name-desc" className="hover:cursor-pointer">
+                Name: Z-A
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   );

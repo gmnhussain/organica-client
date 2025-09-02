@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import data from './health-benefits-data.json';
+import Image from 'next/image';
 
 const HealthBenefits = () => {
   return (
@@ -13,10 +14,18 @@ const HealthBenefits = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-8">
             {/* Left */}
-            <div className="space-y-6">
+            <div className="space-y-10">
               {data.healthBenefits.left.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="text-3xl">{item.icon}</span>
+                <div key={i} className="flex items-start gap-5">
+                  <div className="flex items-center justify-center text-2xl bg-[#fbe4cf] w-[60px] h-[60px] rounded-full flex-shrink-0">
+                    <Image
+                      width={30}
+                      height={30}
+                      src={item.icon}
+                      alt="Icon"
+                      className="w-7 h-7 object-contain"
+                    />
+                  </div>
                   <div>
                     <h4 className="font-bold">{item.title}</h4>
                     <p className="text-sm text-gray-600">{item.desc}</p>
@@ -26,22 +35,34 @@ const HealthBenefits = () => {
             </div>
 
             {/* Center Image */}
-            <div className="flex justify-center">
-              <img
-                src={data.healthBenefits.centerImage}
-                alt="Center"
-                className="w-60 h-60 object-contain rounded-full border-4 border-orange-200 p-4 bg-white"
-              />
+            <div className="flex justify-center items-center bg_circle">
+              <div className="centerImage flex justify-center items-center">
+                <Image
+                  width={150}
+                  height={150}
+                  src={data.healthBenefits.centerImage}
+                  alt="Center Image"
+                  className="w-46 h-46 object-contain"
+                />
+              </div>
             </div>
 
             {/* Right (Reversed only on desktop) */}
-            <div className="space-y-6">
+            <div className="space-y-10">
               {data.healthBenefits.right.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 md:flex-row-reverse md:text-right"
+                  className="flex items-start gap-5 md:flex-row-reverse md:text-right"
                 >
-                  <span className="text-3xl">{item.icon}</span>
+                  <div className="flex items-center justify-center text-2xl bg-[#fbe4cf] w-[60px] h-[60px] rounded-full flex-shrink-0">
+                    <Image
+                      width={30}
+                      height={30}
+                      src={item.icon}
+                      alt="Icon"
+                      className="w-7 h-7 object-contain"
+                    />
+                  </div>
                   <div>
                     <h4 className="font-bold">{item.title}</h4>
                     <p className="text-sm text-gray-600">{item.desc}</p>
