@@ -52,7 +52,7 @@ const ChatWidget = () => {
               <Facebook size={22} />
             </Link>
             <Link
-              href="https://wa.me/8801785009395?text=Hello"
+              href="https://wa.me/8801700000000?text=Hello"
               target="_blank"
               className="icons whatsApp hover:scale-92"
               onClick={handleClick}

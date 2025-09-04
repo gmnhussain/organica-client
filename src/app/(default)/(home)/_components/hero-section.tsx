@@ -22,7 +22,6 @@ const HeroSection = () => {
         pagination={false}
         navigation={false}
         loop={true}
-        // pagination={{ clickable: true }}
         autoplay={{ delay: 7000 }}
       >
         <SwiperSlide>
@@ -31,7 +30,7 @@ const HeroSection = () => {
             alt="Hero Image 1"
             width={1400}
             height={800}
-            className="object-cover w-full h-[650px]"
+            className="object-cover w-full h-[150px] md:h-[450px] lg:h-[750px]"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -40,7 +39,7 @@ const HeroSection = () => {
             alt="Hero Image 2"
             width={1400}
             height={800}
-            className="object-cover w-full h-[650px]"
+            className="object-cover w-full h-[150px] md:h-[450px] lg:h-[750px]"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -49,7 +48,7 @@ const HeroSection = () => {
             alt="Hero Image 3"
             width={1400}
             height={800}
-            className="object-cover w-full h-[650px]"
+            className="object-cover w-full h-[150px] md:h-[450px] lg:h-[750px]"
           />
         </SwiperSlide>
       </Swiper>

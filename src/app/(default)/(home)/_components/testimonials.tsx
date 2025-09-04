@@ -39,10 +39,10 @@ export default function Testimonials() {
           কাস্টমার রিভিউ
         </h2>
 
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons - hidden on phone & tablet */}
         <button
           ref={prevRef}
-          className="absolute left-[-20px] bottom-23 -translate-y-1/2 z-10 flex items-center justify-center cursor-pointer rounded-full"
+          className="hidden lg:flex absolute left-[-20px] bottom-20 -translate-y-1/2 z-10 items-center justify-center cursor-pointer rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ export default function Testimonials() {
 
         <button
           ref={nextRef}
-          className="absolute right-[-20px] bottom-23 -translate-y-1/2 z-10 flex items-center justify-center cursor-pointer rounded-full"
+          className="hidden lg:flex absolute right-[-20px] bottom-20 -translate-y-1/2 z-10 items-center justify-center cursor-pointer rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,6 @@ export default function Testimonials() {
           </svg>
         </button>
 
-        {/* Swiper Carousel */}
         <Swiper
           modules={[Navigation, Autoplay]}
           loop={true}
@@ -94,9 +93,11 @@ export default function Testimonials() {
             }
           }}
           spaceBetween={10}
-          slidesPerView={2}
+          slidesPerView={1}
           breakpoints={{
+            640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2 },
           }}
           autoplay={{
             delay: 3000,
@@ -106,18 +107,15 @@ export default function Testimonials() {
         >
           {testimonials.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-2xl px-6 py-8 mx-3 my-6 flex items-center gap-5 h-full shadow-[0px_8px_15px_0px_rgba(0,0,0,0.07)]">
-                {/* Left Side - Image */}
+              <div className="bg-white rounded-lg px-4 sm:px-6 py-6 sm:py-8 mx-2 sm:mx-3 my-4 flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-4 h-full">
                 <Image
                   width={170}
                   height={170}
                   src={item.img}
                   alt={item.name}
-                  className="w-34 h-34 rounded-full object-cover flex-shrink-0"
+                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover flex-shrink-0"
                 />
-
-                {/* Right Side - Content */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 text-center sm:text-left">
                   <p className="text-gray-700 text-sm leading-relaxed">
                     {item.text}
                   </p>
