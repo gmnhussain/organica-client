@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ChevronsRight } from 'lucide-react';
 
 const ingredients = [
   { img: '/peanutButter/1.jpg', label: 'খাই চিনা বাদাম' },
@@ -13,11 +14,20 @@ const ingredients = [
   { img: '/peanutButter/7.jpg', label: 'পিঙ্ক সল্ট' },
 ];
 
+const benefits = [
+  'লাইফ টাইম প্রোডাক্ট রিটার্ন গ্যারান্টি।',
+  'অগ্রিম এক টাকা দেওয়া ছাড়াই অর্ডার করুন, পছন্দ হলে তখনই নিবেন।',
+  'ডেলিভারিয়ান থাকা অবস্থায় প্রোডাক্ট দেখে পছন্দ না হলে রিটার্ন করে দিবেন।',
+  'কোন প্রিজারভেটিভ ছাড়া সম্পূর্ণ প্রাকৃতিকভাবে প্রস্তুত।',
+  'প্রতিটি ব্যাচে থাকে সর্বোচ্চ মানের নিশ্চয়তা।',
+  'বাজারের যেকোনো পিনাট বাটারের চেয়ে, আমাদের পিনাট বাটার অনেক বেশি সুস্বাদু ও পুষ্টিকর!',
+];
+
 export default function PeanutButterBenefits() {
   return (
     <section className="py-20 container mx-auto">
       {/* Heading */}
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-700 text-center mb-14">
         পিনাট বাটারের স্বাস্থ্য উপকারিতা
       </h2>
 
@@ -41,7 +51,6 @@ export default function PeanutButterBenefits() {
       <div className="flex flex-wrap items-center justify-center gap-18 p-6 md:p-12">
         {/* Left side: Image with circular background */}
         <div className="relative w-64 h-64 md:w-96 md:h-96">
-          {/* <div className="absolute inset-0 rounded-full bg-green-800"></div> */}
           <Image
             src="/penutButter.png"
             alt="Peanut Butter Products"
@@ -54,25 +63,24 @@ export default function PeanutButterBenefits() {
 
         {/* Right side: Text content */}
         <div className="max-w-lg text-gray-800">
-          <h2 className="mb-6 font-bold text-lg md:text-xl">
-            কেনো নিউডিউডাটর পিনাট বাটার নিবেন?
+          <h2 className="text-2xl font-bold text-primary mb-6">
+            কেনো নিউট্রিডিউটার পিনাট বাটার নিবেন?
           </h2>
-
-          <ul className="mb-6 space-y-3 list-disc list-inside marker:text-green-800">
-            <li>লাইফ টাইম প্রোডাক্ট গ্যারান্টি।</li>
-            <li>
-              অগ্রিম এক টাকা দেওয়া ছাড়া অর্ডার করুন, পছন্দ হলে তবেই নিবেন।
-            </li>
-            <li>
-              ডেলিভারিমান থাকা অবস্থায় প্রোডাক্ট দেখে পছন্দ না হলে রিটার্ন করে
-              দিবেন
-            </li>
-            <li>কোন প্রিজারভেটিভ ছাড়া সম্পূর্ণ প্রাকৃতিকভাবে প্রস্তুত।</li>
-            <li>প্রতিটি ব্যাচে থাকে সর্বোচ্চ মানের নিশ্চয়তা।</li>
-            <li>
-              বাজারের যেকোনো পিনাট বাটারের চেয়ে, আমাদের পিনাট বাটার অনেক বেশি
-              সুস্বাদু ও পুষ্টিকর!
-            </li>
+          <ul className="space-y-4">
+            {benefits.map((item, i) => (
+              <li key={i} className="flex items-start gap-4">
+                <div className="mt-1 shrink-0">
+                  <Image
+                    src="/select.svg"
+                    alt="icon"
+                    width={30}
+                    height={30}
+                    className="w-3 h-3 object-contain"
+                  />
+                </div>
+                <p className="text-md text-gray-800">{item}</p>
+              </li>
+            ))}
           </ul>
           <div className="mt-10">
             <Link

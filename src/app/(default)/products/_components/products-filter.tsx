@@ -7,7 +7,7 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 
 export const ProductsFilter = () => {
-  const [priceRange, setPriceRange] = useState([600, 1000]);
+  const [priceRange, setPriceRange] = useState([20, 8000]);
   return (
     <>
       {/* Filter By Price */}
@@ -15,13 +15,13 @@ export const ProductsFilter = () => {
         <h3 className="text-lg font-medium text-gray-900 mb-4">
           Filter By Price
         </h3>
-        <div className="mb-4">
+        <div className="mb-4 pe-10">
           <Slider
             value={priceRange}
             onValueChange={setPriceRange}
             defaultValue={priceRange}
-            max={2000}
-            min={100}
+            max={8000}
+            min={20}
             step={5}
             className="w-full"
           />

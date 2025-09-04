@@ -22,7 +22,7 @@ const ProductCard = ({
   return (
     <div
       className={cn(
-        'p-5 rounded-md hover:shadow-md transition-shadow duration-300 bg-white',
+        'p-5 rounded-sm hover:shadow-md transition-shadow duration-300 bg-white border',
         viewMode === 'grid' ? 'text-center' : 'flex gap-4 p-4 items-center'
       )}
     >
@@ -38,8 +38,8 @@ const ProductCard = ({
             <SafeImage
               src={getStoragePath(product?.photo)}
               alt={product?.name || ''}
-              width={viewMode === 'grid' ? 100 : 80}
-              height={viewMode === 'grid' ? 100 : 80}
+              width={viewMode === 'grid' ? 150 : 150}
+              height={viewMode === 'grid' ? 150 : 150}
               className="!w-full !h-full object-contain"
             />
           ) : (

@@ -1,109 +1,138 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
-  Phone,
-  Mail,
+  MessageCircle,
   MapPin,
-  Facebook,
-  Twitter,
+  Mail,
+  Phone,
   Instagram,
-  Leaf,
+  Facebook,
+  Youtube,
 } from 'lucide-react';
+import ChatWeget from './ChatWidget/index';
 
 export const Footer = () => {
   return (
-    <footer className="bg-green-800 text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-green-600" />
-              </div>
-              <span className="text-xl font-bold">অরগানিক</span>
-            </div>
-            <p className="text-green-200 mb-4">
-              প্রাকৃতিক ও বিশুদ্ধ মধুর বিশ্বস্ত উৎস
+    <footer className="bg-[#1E3006] text-white relative">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20">
+          {/* Left Section - Organica Brand */}
+          <div className="space-y-4 text-center md:text-left">
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Organica Logo"
+                width={100}
+                height={100}
+                className="w-28 md:w-32 h-auto object-contain invert brightness-0 mb-4 inline-block"
+              />
+            </Link>
+            <p className="text-sm leading-relaxed">
+              আপনার স্বাস্থ্যের জীবনযাত্রার সঠিক আয়ুর্বেদিক রোগের পুষ্টিকর
+              খাদ্য বর্ণ সরবরাহ করে থাকি, যা আপনাকে সুস্থ ও শক্তিশালী রাখতে
+              সহায়তা।
             </p>
-            <div className="flex space-x-4">
-              <Facebook className="w-6 h-6 text-green-200 hover:text-white cursor-pointer" />
-              <Twitter className="w-6 h-6 text-green-200 hover:text-white cursor-pointer" />
-              <Instagram className="w-6 h-6 text-green-200 hover:text-white cursor-pointer" />
+
+            {/* Social Media Icons */}
+            <div className="flex justify-center md:justify-start gap-4 mt-6 md:mt-8 mb-6">
+              <Link href="#" className="hover:text-gray-300 transition-colors">
+                <Facebook className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="hover:text-gray-300 transition-colors">
+                <Instagram className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="hover:text-gray-300 transition-colors">
+                <Youtube className="w-5 h-5" />
+              </Link>
             </div>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">পণ্য</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  খেজুর গুড়
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  মধু
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  সরিষা মধু
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  কালোজিরা মধু
-                </a>
-              </li>
-            </ul>
+
+          {/* Middle Section - Contact Info */}
+          <div className="space-y-4 text-center md:text-left">
+            <h3 className="text-lg font-semibold">যোগাযোগ</h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-2 sm:gap-3 justify-center md:justify-start">
+                <MapPin className="w-5 h-5 flex-shrink-0" />
+                <span className="text-sm">ধানমন্ডি ৩২ ঢাকা বাংলাদেশ</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 justify-center md:justify-start">
+                <Mail className="w-5 h-5 flex-shrink-0" />
+                <Link
+                  href="mailto:organica@gmail.com"
+                  className="text-sm hover:text-gray-300 transition-colors"
+                >
+                  organica@gmail.com
+                </Link>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 justify-center md:justify-start">
+                <Phone className="w-5 h-5 flex-shrink-0" />
+                <Link
+                  href="tel:+8801600000000003"
+                  className="text-sm hover:text-gray-300 transition-colors"
+                >
+                  ০১৬০০০০০০০০০৩
+                </Link>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">গুরুত্বপূর্ণ লিংক</h3>
-            <ul className="space-y-2">
+
+          {/* Right Section - Emergency Contact & Download */}
+          <div className="space-y-3 text-center md:text-left">
+            <h3 className="text-lg font-semibold">জরুরী প্রয়োজনে</h3>
+            <ul className="mt-2 space-y-2">
               <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  আমাদের সম্পর্কে
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  নীতিমালা
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
-                  ডেলিভারি
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-green-200 hover:text-white">
+                <Link
+                  href="/return-refund-faqs#1"
+                  className="text-sm hover:text-gray-300 transition-colors"
+                >
                   রিটার্ন পলিসি
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/return-refund-faqs#2"
+                  className="text-sm hover:text-gray-300 transition-colors"
+                >
+                  রিফান্ড পলিসি
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/return-refund-faqs#3"
+                  className="text-sm hover:text-gray-300 transition-colors"
+                >
+                  জিজ্ঞাসা
+                </Link>
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">যোগাযোগ</h3>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-green-200" />
-                <span className="text-green-200">০১৭১২৩৪৫৬৭৮</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-green-200" />
-                <span className="text-green-200">info@organic.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-green-200" />
-                <span className="text-green-200">ঢাকা, বাংলাদেশ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-green-700 mt-8 pt-8 text-center">
-          <p className="text-green-200">
-            © ২০২৫ অরগানিক। সকল অধিকার সংরক্ষিত।
-          </p>
         </div>
       </div>
+
+      {/* Copyright */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 border-t border-white/15 pt-4 pb-2">
+        <p className="text-sm text-white/70 text-center sm:text-left">
+          © {new Date().getFullYear()} A Product Of API Solutions Ltd.
+        </p>
+        <Link
+          href="https://apisolutionsltd.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/API-logo.png"
+            alt="API Company Logo"
+            width={48}
+            height={48}
+            className="w-10 h-10 object-contain brightness-0 invert"
+            aria-label="API Company Logo"
+          />
+        </Link>
+      </div>
+
+      {/* Chat Widget */}
+      <ChatWeget />
     </footer>
   );
 };

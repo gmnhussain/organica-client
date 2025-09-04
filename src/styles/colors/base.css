@@ -5,7 +5,8 @@
   --organica-forest: #1d3106;
   --organica-orange: #ed7b14;
   --primary: #6a8042;
-  --background: #f8f6f6;
+  /* --background: #f8f6f6; */
+  --background: #fff;
   /* Custom colors end */
 
   --foreground: oklch(0.145 0 0);
