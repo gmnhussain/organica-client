@@ -8,7 +8,7 @@ const Products = async () => {
     type: 'external',
     lang: 'bn',
     // limit: limit,
-    pageSize: 10,
+    pageSize: 9,
     columnAccessor: '-id',
     search: '',
     // query: query,

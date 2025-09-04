@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Slider } from '../_components/ui/slider';
+import { Slider } from './ui/slider';
 import { Grid, List, Filter, ShoppingCart } from 'lucide-react';
 
 export default function ProductListingPage() {

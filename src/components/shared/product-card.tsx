@@ -8,6 +8,7 @@ import { Product } from '@/types/product';
 import SafeImage from '@/components/shared/image';
 import { ViewMode } from '@/stores/useViewPreferencesStore';
 import { cn } from '@/lib/utils';
+import { ShoppingCart } from 'lucide-react';
 // import placeholder from '@/data/placeholder';
 
 const ProductCard = ({
@@ -29,7 +30,7 @@ const ProductCard = ({
       <div
         className={
           viewMode === 'grid'
-            ? 'w-full h-48 mb-3 flex items-center justify-center'
+            ? 'w-full h-70 mb-3 flex items-center justify-center'
             : 'w-32 h-32 flex-shrink-0'
         }
       >
@@ -66,8 +67,9 @@ const ProductCard = ({
             addToCart(product);
             toggleDrawer(true);
           }}
-          className={`bg-primary hover:bg-primary/90 transition duration-300 text-white px-5 py-2 rounded text-sm hover:cursor-pointer`}
+          className={`bg-primary hover:bg-primary/80 w-full flex items-center justify-center transition duration-300 text-white px-5 py-2 rounded text-sm hover:cursor-pointer`}
         >
+          <ShoppingCart className="w-4 h-4 mr-2" />
           অর্ডার করুন
         </button>
       </div>
